@@ -123,6 +123,12 @@ $language->languages(); // All accepted languages in priority order
 
 By default, the package builds a fingerprint from the visitor IP address and User-Agent.
 
+Publish the config file if you want to replace the default fingerprint driver:
+
+```bash
+php artisan vendor:publish --tag=visitor-config
+```
+
 You can replace the implementation in the config:
 
 ```php
