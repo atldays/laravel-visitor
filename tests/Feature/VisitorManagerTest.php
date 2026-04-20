@@ -3,6 +3,7 @@
 namespace Atldays\Visitor\Tests\Feature;
 
 use Atldays\Visitor\Contracts\VisitorContract;
+use Atldays\Visitor\Data\Language;
 use Atldays\Visitor\Tests\TestCase;
 use Atldays\Visitor\VisitorManager;
 
@@ -24,5 +25,31 @@ class VisitorManagerTest extends TestCase
         $this->assertSame('Chrome', $visitor->agent()->browser()?->name());
         $this->assertSame('en-US', $visitor->language()->language());
         $this->assertSame(['en-US', 'en'], $visitor->language()->languages());
+    }
+
+    public function test_manager_can_detect_visitor_without_languages(): void
+    {
+        $visitor = $this->app->make(VisitorManager::class)->from(
+            ip: '8.8.8.8',
+            userAgent: 'UnitTest/1.0',
+        );
+
+        $this->assertNull($visitor->language()->language());
+        $this->assertSame([], $visitor->language()->languages());
+    }
+
+    public function test_manager_can_accept_language_contract(): void
+    {
+        $visitor = $this->app->make(VisitorManager::class)->from(
+            ip: '8.8.8.8',
+            userAgent: 'UnitTest/1.0',
+            language: new Language(
+                language: 'en',
+                languages: ['en', 'de'],
+            ),
+        );
+
+        $this->assertSame('en', $visitor->language()->language());
+        $this->assertSame(['en', 'de'], $visitor->language()->languages());
     }
 }

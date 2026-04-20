@@ -16,12 +16,12 @@ class FingerprintTest extends TestCase
             ip: '8.8.8.8',
             userAgent: 'UnitTest/1.0',
             language: [
-                'language' => 'uk',
-                'languages' => ['uk', 'en'],
+                'language' => 'en',
+                'languages' => ['en', 'de'],
             ],
         );
 
-        $this->assertSame('8.8.8.8|UnitTest/1.0|uk,en', $visitor->fingerprint());
+        $this->assertSame('8.8.8.8|UnitTest/1.0|en,de', $visitor->fingerprint());
     }
 }
 
