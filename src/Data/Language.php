@@ -8,24 +8,6 @@ use Spatie\LaravelData\Data;
 
 class Language extends Data implements LanguageContract
 {
-    /**
-     * @param string[] $languages
-     */
-    public function __construct(
-        public readonly ?string $language = null,
-        public readonly array $languages = [],
-    ) {}
-
-    public function language(): ?string
-    {
-        return $this->language;
-    }
-
-    public function languages(): array
-    {
-        return $this->languages;
-    }
-
     public static function fromRequest(Request $request): self
     {
         return new static(
@@ -46,5 +28,23 @@ class Language extends Data implements LanguageContract
                 static fn (mixed $item): bool => is_string($item) && $item !== '',
             )),
         );
+    }
+
+    /**
+     * @param string[] $languages
+     */
+    public function __construct(
+        public readonly ?string $language = null,
+        public readonly array $languages = [],
+    ) {}
+
+    public function language(): ?string
+    {
+        return $this->language;
+    }
+
+    public function languages(): array
+    {
+        return $this->languages;
     }
 }

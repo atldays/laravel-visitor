@@ -55,6 +55,7 @@
                 "Atldays\\Visitor\\VisitorServiceProvider"
             ],
             "aliases": {
+                "Visitor": "Atldays\\Visitor\\Facades\\Visitor",
                 "VisitorManager": "Atldays\\Visitor\\Facades\\VisitorManager"
             }
         }
