@@ -123,6 +123,8 @@ $language->languages(); // All accepted languages in priority order
 
 By default, the package builds a fingerprint from the visitor IP address and User-Agent.
 
+Use `Atldays\Visitor\Fingerprints\IpUserAgentGeo` when you want to include the geo provider, continent, country, and city in the fingerprint.
+
 Publish the config file if you want to replace the default fingerprint driver:
 
 ```bash
